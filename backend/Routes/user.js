@@ -44,7 +44,8 @@ User.findOne({email: req.body.email})
       'this_should_get_longer',
       {expiresIn: '1h'});
     res.status(200).json({
-      token:token
+      token:token,
+      expiresIn: 3600
     });
   })
   .catch(err=>{
