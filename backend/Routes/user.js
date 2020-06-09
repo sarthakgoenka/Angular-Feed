@@ -19,7 +19,7 @@ router.post("/signup", (req, res, next)=>{
         })
         .catch(err=>{
           res.status(500).json({
-            error:err
+            message: "Invalid Authentication Credentials!"
           });
         });
     });
@@ -50,7 +50,7 @@ User.findOne({email: req.body.email})
     });
   })
   .catch(err=>{
-  return res.status(401).json({message: "Auth Failed"});
+  return res.status(401).json({ message: "Invalid Authentication Credentials!"});
 });
 });
 

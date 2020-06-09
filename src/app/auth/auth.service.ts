@@ -49,7 +49,9 @@ private authStatusListener = new Subject<boolean>();
     this.http.post<AuthData>('http://localhost:3000/api/user/signup', authData)
       .subscribe(response=>{
         console.log(response);
-        this.router.navigate(['/login']);
+        this.router.navigate(['/']);
+      }, error => {
+        this.authStatusListener.next(false);
       })
   }
   login(email:string, password:string){
@@ -70,7 +72,9 @@ private authStatusListener = new Subject<boolean>();
           this.authStatusListener.next(true);
           this.router.navigate(['/']);
         }
-      })
+      },error => {
+        this.authStatusListener.next(false);
+      });
   }
   private setAuthTimer(duration:number){
     console.log("your duration is: " + duration);

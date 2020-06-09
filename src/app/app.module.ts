@@ -21,6 +21,9 @@ import {MatPaginatorModule} from "@angular/material/paginator";
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import {AuthIntercetor} from "./auth/auth-intercetor";
+import {ErrorInterceptor} from "./error-interceptor";
+import {MatDialogModule} from "@angular/material/dialog";
+import { ErrorComponent } from './error/error.component';
 
 
 @NgModule({
@@ -31,6 +34,7 @@ import {AuthIntercetor} from "./auth/auth-intercetor";
     PostListComponent,
     LoginComponent,
     SignupComponent,
+    ErrorComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,11 +51,14 @@ import {AuthIntercetor} from "./auth/auth-intercetor";
     HttpClientModule,
     AppRoutingModule,
     MatProgressSpinnerModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDialogModule
 
 
   ],
-  providers: [{provide: HTTP_INTERCEPTORS ,useClass: AuthIntercetor, multi:true}],
-  bootstrap: [AppComponent]
+  providers: [{provide: HTTP_INTERCEPTORS ,useClass: AuthIntercetor, multi:true},
+    {provide: HTTP_INTERCEPTORS ,useClass: ErrorInterceptor, multi:true}],
+  bootstrap: [AppComponent],
+  entryComponents: [ErrorComponent]
 })
 export class AppModule { }
