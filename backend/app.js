@@ -8,7 +8,7 @@ const postRoutes = require('./Routes/posts');
 const userRoutes = require('./Routes/user');
 const path = require('path');
 mongoose.connect(
-  'mongodb+srv://sarthak:jaimaatwb@angular-node-uxkpp.mongodb.net/node-angular?retryWrites=true&w=majority')
+  'mongodb+srv://sarthak:'+ process.env.MONGO_ATLAS_PW+ '@angular-node-uxkpp.mongodb.net/node-angular?retryWrites=true&w=majority')
   .then(()=>{
     console.log("connected to the database");
   }).catch(()=>{
